@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class RotatingEnemy : MonoBehaviour
 {
-    [SerializeField] private float rotationAngle = 45f;
+    [SerializeField] private float rotationAngle = 90f;
     [SerializeField] private float rotationInterval = 1f;
 
     private float timer = 0f;
