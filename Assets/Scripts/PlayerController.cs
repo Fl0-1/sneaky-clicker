@@ -4,7 +4,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5f;
     private Vector3 targetPosition;
-    private bool isMoving = false;
 
     private void Update()
     {
@@ -27,10 +26,5 @@ public class PlayerController : MonoBehaviour
     void MovePlayer()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
-
-        if (transform.position == targetPosition)
-        {
-            isMoving = false;
-        }
     }
 }
