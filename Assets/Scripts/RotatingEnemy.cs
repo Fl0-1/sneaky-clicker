@@ -3,18 +3,29 @@ using UnityEngine;
 public class RotatingEnemy : MonoBehaviour
 {
     [SerializeField] private float rotationAngle = 90f;
-    [SerializeField] private float rotationInterval = 1f;
 
-    private float timer = 0f;
-
-    private void Update()
+    private void Start()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= rotationInterval)
+        if (GameManager.Instance != null)
         {
-            transform.Rotate(Vector3.forward, rotationAngle);
-            timer = 0f;
+            GameManager.Instance.OnBeat += Rotate;
         }
+        else
+        {
+            Debug.LogError("GameManager instance not found!");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.OnBeat -= Rotate;
+        }
+    }
+
+    private void Rotate()
+    {
+        transform.Rotate(Vector3.forward, rotationAngle);
     }
 }
