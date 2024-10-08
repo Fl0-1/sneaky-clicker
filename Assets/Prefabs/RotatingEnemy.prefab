@@ -216,7 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationAngle: 90
-  rotationInterval: 1
 --- !u!1 &6757554520983033843
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +228,7 @@ GameObject:
   - component: {fileID: 1761029755774671625}
   - component: {fileID: 7310835251035307981}
   m_Layer: 0
-  m_Name: Collider
+  m_Name: Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
