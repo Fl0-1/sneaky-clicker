@@ -19,6 +19,7 @@ public class CheckpointEnemy : MonoBehaviour
     private bool movingForward = true;
     private Vector3 targetPosition;
     private bool isMoving = true;
+    private Transform enemyTransform;
 
     private void Start()
     {
@@ -41,6 +42,12 @@ public class CheckpointEnemy : MonoBehaviour
         {
             targetPosition = checkpoints[currentCheckpointIndex].position;
         }
+
+        enemyTransform = transform.GetChild(0);
+        if (enemyTransform == null)
+        {
+            Debug.LogError("Enemy child object not found!");
+        }
     }
 
     private void GetCheckpoints()
@@ -48,7 +55,6 @@ public class CheckpointEnemy : MonoBehaviour
         Transform checkpointsParent = transform.Find("Checkpoints");
         if (checkpointsParent != null)
         {
-            // Prevent the Checkpoints object from being treated as a checkpoint
             checkpoints = checkpointsParent.GetComponentsInChildren<Transform>()
                 .Where(t => t != checkpointsParent)
                 .ToList();
@@ -70,13 +76,24 @@ public class CheckpointEnemy : MonoBehaviour
 
     private void Move()
     {
-        if (checkpoints.Count == 0 || !isMoving) return;
+        if (checkpoints.Count == 0 || !isMoving || enemyTransform == null) return;
+
+        // Calculate movement direction
+        Vector3 direction = (targetPosition - enemyTransform.position).normalized;
 
         // Move the enemy GameObject towards the target position
-        transform.GetChild(0).position = Vector3.MoveTowards(transform.GetChild(0).position, targetPosition, moveDistance);
+        enemyTransform.position = Vector3.MoveTowards(enemyTransform.position, targetPosition, moveDistance);
+
+        // Rotate the enemy to face the movement direction
+        if (direction != Vector3.zero)
+        {
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            // Add 90 degrees to the angle to align the bottom of the sprite with the movement direction
+            enemyTransform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
+        }
 
         // Check if we've reached the current checkpoint
-        if (Vector3.Distance(transform.GetChild(0).position, checkpoints[currentCheckpointIndex].position) < 0.01f)
+        if (Vector3.Distance(enemyTransform.position, checkpoints[currentCheckpointIndex].position) < 0.01f)
         {
             // Move to the next checkpoint
             if (movingForward)
