@@ -12,7 +12,7 @@ public class CheckpointEnemy : MonoBehaviour
     }
 
     [SerializeField] private EndBehavior endBehavior = EndBehavior.Loop;
-    [SerializeField] private float moveDistance = 1f; // Distance to move on each beat
+    [SerializeField] private float moveDistance = 1f;
 
     private List<Transform> checkpoints;
     private int currentCheckpointIndex = 0;
@@ -93,7 +93,7 @@ public class CheckpointEnemy : MonoBehaviour
         }
 
         // Check if we've reached the current checkpoint
-        if (Vector3.Distance(enemyTransform.position, checkpoints[currentCheckpointIndex].position) < 0.01f)
+        if (Vector3.Distance(enemyTransform.position, checkpoints[currentCheckpointIndex].position) < moveDistance)
         {
             // Move to the next checkpoint
             if (movingForward)
