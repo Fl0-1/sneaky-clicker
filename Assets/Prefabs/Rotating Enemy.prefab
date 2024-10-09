@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5393424261154616335}
   - component: {fileID: 1056643769073935969}
   m_Layer: 0
-  m_Name: Triangle
+  m_Name: Detection Area Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1418837923938119344}
   - component: {fileID: 1387921824332389723}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +179,7 @@ GameObject:
   - component: {fileID: 4755263738126784075}
   - component: {fileID: 481635611896245198}
   m_Layer: 0
-  m_Name: RotatingEnemy
+  m_Name: Rotating Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 1761029755774671625}
   - component: {fileID: 7310835251035307981}
   m_Layer: 0
-  m_Name: Trigger
+  m_Name: Detection Area Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
