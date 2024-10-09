@@ -7000,6 +7000,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3257906100335612804, guid: 3e1042f04a4e3584cb1bd64426df37ed, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3560651697763208984, guid: 3e1042f04a4e3584cb1bd64426df37ed, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

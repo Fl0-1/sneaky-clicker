@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float normalMoveSpeed = 5f;
+    [SerializeField] private float sneakyMoveSpeed = 2.5f;
     private Vector3 targetPosition;
+    private bool isSneaky = false;
+
+    public bool IsSneaky { get { return isSneaky; } }
 
     private void Update()
     {
-        if (Input.GetButton("Fire2"))
-        {
-            return;
-        }
+        isSneaky = Input.GetButton("Fire2");
 
         SetTargetPosition();
         MovePlayer();
-
     }
 
     void SetTargetPosition()
@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void MovePlayer()
     {
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
+        float currentMoveSpeed = isSneaky ? sneakyMoveSpeed : normalMoveSpeed;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, currentMoveSpeed * Time.deltaTime);
     }
 }
