@@ -38,4 +38,10 @@ public class GameManager : MonoBehaviour
     {
         return beatInterval;
     }
+
+    public void SetBeatInterval(float newInterval)
+    {
+        beatInterval = newInterval;
+        beatTimer = 0f; // Reset the timer to keep the beat consistent
+    }
 }
