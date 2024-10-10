@@ -7,8 +7,8 @@ public class MainMenuLogic : MonoBehaviour
 {
     private GameObject mainMenu;
     private GameObject optionsMenu;
-    private GameObject extrasMenu;
     private GameObject loading;
+    private GameObject levels;
 
     public AudioSource buttonSound;
 
@@ -17,22 +17,21 @@ public class MainMenuLogic : MonoBehaviour
     void Start()
     {
         mainMenu = GameObject.Find("MainMenuCanvas");
+        levels = GameObject.Find("LevelsCanvas");
         optionsMenu = GameObject.Find("OptionsCanvas");
-        extrasMenu = GameObject.Find("ExtrasCanvas");
         loading = GameObject.Find("LoadingCanvas");
 
         mainMenu.GetComponent<Canvas>().enabled = true;
+        levels.GetComponent<Canvas>().enabled = false;
         optionsMenu.GetComponent<Canvas>().enabled = false;
-        extrasMenu.GetComponent<Canvas>().enabled = false; 
         loading.GetComponent<Canvas>().enabled = false; 
     }
 
     public void StartButton()
     {
-        loading.GetComponent<Canvas>().enabled = true;
-        mainMenu.GetComponent<Canvas>().enabled = false;
         buttonSound.Play();
-        SceneManager.LoadScene("SampleScene");
+        mainMenu.GetComponent<Canvas>().enabled = false;
+        levels.GetComponent<Canvas>().enabled = false;
     }
 
     public void OptionsButton()
@@ -40,13 +39,6 @@ public class MainMenuLogic : MonoBehaviour
         buttonSound.Play();
         mainMenu.GetComponent<Canvas>().enabled = false;
         optionsMenu.GetComponent<Canvas>().enabled = true;
-    }
-
-    public void ExtrasButton()
-    {
-        buttonSound.Play();
-        mainMenu.GetComponent<Canvas>().enabled = false;
-        extrasMenu.GetComponent<Canvas>().enabled = true;
     }
 
     public void ExitGameButton()
@@ -61,10 +53,21 @@ public class MainMenuLogic : MonoBehaviour
         buttonSound.Play();
         mainMenu.GetComponent<Canvas>().enabled = true;
         optionsMenu.GetComponent<Canvas>().enabled = false;
-        extrasMenu.GetComponent<Canvas>().enabled = false;
     }
 
+    public void LevelsButton()
+    {
+        buttonSound.Play();
+        mainMenu.GetComponent<Canvas>().enabled = false;
+        levels.GetComponent<Canvas>().enabled = true;
+    }
 
+     public void Level1Button()
+    {
+        buttonSound.Play();
+        loading.GetComponent<Canvas>().enabled = false; 
+        SceneManager.LoadScene("SampleScene");
+    }
 
     void Update()
     {
