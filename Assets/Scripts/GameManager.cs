@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,5 +44,11 @@ public class GameManager : MonoBehaviour
     {
         beatInterval = newInterval;
         beatTimer = 0f; // Reset the timer to keep the beat consistent
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
