@@ -1,4 +1,5 @@
 using UnityEngine;
+using MainMenuLogic;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,4 +45,24 @@ public class GameManager : MonoBehaviour
         beatInterval = newInterval;
         beatTimer = 0f; // Reset the timer to keep the beat consistent
     }
+
+    public void Win(){
+        Debug.Log("You win!");
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        if (currentSceneIndex + 1 < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(currentSceneIndex + 1);
+        }
+        else 
+        {
+            ReturnToMenuTUT();
+        }
+
+        public void ReturnToMenuTUT()
+        {   
+            SceneManager.LoadScene(MainMenuTUT);
+        }
+
+    }
 }
+
