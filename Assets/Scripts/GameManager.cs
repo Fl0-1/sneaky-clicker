@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,9 +7,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private float beatInterval = 1f;
     private float beatTimer = 0f;
+    [SerializeField] private AudioClip beatSound;
 
     public delegate void BeatAction();
     public event BeatAction OnBeat;
+    private AudioSource audioSource;
 
     private void Awake()
     {
@@ -31,6 +34,7 @@ public class GameManager : MonoBehaviour
         {
             beatTimer = 0f;
             OnBeat?.Invoke();
+            BeatSound();
         }
     }
 
@@ -43,5 +47,31 @@ public class GameManager : MonoBehaviour
     {
         beatInterval = newInterval;
         beatTimer = 0f; // Reset the timer to keep the beat consistent
+    }
+
+    public void Win()
+    {
+        Debug.Log("Loading next level ID");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void BeatSound()
+    {
+        if (beatSound != null)
+        {
+            audioSource = GetComponent<AudioSource>();
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
+            audioSource.loop = false;
+            audioSource.PlayOneShot(beatSound);
+        }
     }
 }

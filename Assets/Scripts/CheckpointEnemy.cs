@@ -13,6 +13,10 @@ public class CheckpointEnemy : MonoBehaviour
 
     [SerializeField] private EndBehavior endBehavior = EndBehavior.Loop;
     [SerializeField] private float moveDistance = 1f; // Distance to move on each beat
+    [SerializeField] private GameObject detectionArea;
+    [SerializeField] private Sprite enemyTopSprite;
+    [SerializeField] private Sprite enemyBottomSprite;
+    [SerializeField] private Sprite enemyRightSprite;
 
     private List<Transform> checkpoints;
     private int currentCheckpointIndex = 0;
@@ -20,6 +24,7 @@ public class CheckpointEnemy : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = true;
     private Transform enemyTransform;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
@@ -47,6 +52,21 @@ public class CheckpointEnemy : MonoBehaviour
         if (enemyTransform == null)
         {
             Debug.LogError("Enemy child object not found!");
+        }
+
+        if (detectionArea == null)
+        {
+            detectionArea = enemyTransform.Find("Detection Area")?.gameObject;
+            if (detectionArea == null)
+            {
+                Debug.LogError("Detection Area not found!");
+            }
+        }
+
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("SpriteRenderer component not found!");
         }
     }
 
@@ -84,12 +104,13 @@ public class CheckpointEnemy : MonoBehaviour
         // Move the enemy GameObject towards the target position
         enemyTransform.position = Vector3.MoveTowards(enemyTransform.position, targetPosition, moveDistance);
 
-        // Rotate the enemy to face the movement direction
-        if (direction != Vector3.zero)
+        // Rotate the Detection Area to face the movement direction
+        if (direction != Vector3.zero && detectionArea != null)
         {
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
             // Add 90 degrees to the angle to align the bottom of the sprite with the movement direction
-            enemyTransform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
+            detectionArea.transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
+            UpdateSprite(angle + 90f);
         }
 
         // Check if we've reached the current checkpoint
@@ -118,6 +139,39 @@ public class CheckpointEnemy : MonoBehaviour
             {
                 targetPosition = checkpoints[currentCheckpointIndex].position;
             }
+        }
+    }
+
+    private void UpdateSprite(float angle)
+    {
+        if (spriteRenderer == null)
+        {
+            Debug.LogError("No sprite renderer");
+            return;
+        }
+
+        // Normalize the angle to be between 0 and 360
+        angle = (angle + 360) % 360;
+
+        if (angle > 315 || angle <= 45) // Facing right
+        {
+            spriteRenderer.sprite = enemyRightSprite;
+            spriteRenderer.flipX = false;
+        }
+        else if (angle > 45 && angle <= 135) // Facing down
+        {
+            spriteRenderer.sprite = enemyBottomSprite;
+            spriteRenderer.flipX = false;
+        }
+        else if (angle > 135 && angle <= 225) // Facing left
+        {
+            spriteRenderer.sprite = enemyRightSprite;
+            spriteRenderer.flipX = true;
+        }
+        else // Facing up
+        {
+            spriteRenderer.sprite = enemyTopSprite;
+            spriteRenderer.flipX = false;
         }
     }
 
