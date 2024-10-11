@@ -252,6 +252,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 710678aaffdfa4c58974fac0cf262aa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpscareSprite: {fileID: 21300000, guid: 90e6f8c00d936b44dbcc271f478d37bc, type: 3}
+  jumpscareSound: {fileID: 8300000, guid: 937425955d5b48042bb52d14458d4d7c, type: 3}
+  jumpscareDuration: 5
 --- !u!1 &4577486853812417760
 GameObject:
   m_ObjectHideFlags: 0
