@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2d37926f8d361c44a76c8ae8f19daac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatInterval: 0.5
+  beatInterval: 0.7
+  beatSound: {fileID: 8300000, guid: 7798572888dd89d498a953933a5c15e6, type: 3}
