@@ -4135,6 +4135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rotating Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7310835251035307981, guid: 31a5ffaf1d7d21049aedef58bf7b3b38, type: 3}
+      propertyPath: jumpscareImage
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4389,6 +4393,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3457966523215724034, guid: c425eeedbecbf5b49b9d8b6d947d1aa0, type: 3}
+      propertyPath: jumpscareDuration
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5136853334188959643, guid: c425eeedbecbf5b49b9d8b6d947d1aa0, type: 3}
       propertyPath: m_SortingOrder
       value: 1
@@ -4507,7 +4515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3538904750764806984, guid: 71f29a249bba09e4899a7efdd3d06835, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3540603132798087840, guid: 71f29a249bba09e4899a7efdd3d06835, type: 3}
       propertyPath: m_LocalPosition.x
