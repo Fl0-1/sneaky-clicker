@@ -49,6 +49,12 @@ public class GameManager : MonoBehaviour
         beatTimer = 0f; // Reset the timer to keep the beat consistent
     }
 
+    public void Win()
+    {
+        Debug.Log("Loading next level ID");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
     public void GameOver()
     {
         Debug.Log("Game Over!");

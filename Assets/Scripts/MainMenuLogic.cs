@@ -24,7 +24,7 @@ public class MainMenuLogic : MonoBehaviour
         mainMenu.GetComponent<Canvas>().enabled = true;
         levels.GetComponent<Canvas>().enabled = false;
         optionsMenu.GetComponent<Canvas>().enabled = false;
-        loading.GetComponent<Canvas>().enabled = false; 
+        loading.GetComponent<Canvas>().enabled = false;
     }
 
     public void StartButton()
@@ -61,16 +61,29 @@ public class MainMenuLogic : MonoBehaviour
         mainMenu.GetComponent<Canvas>().enabled = false;
         levels.GetComponent<Canvas>().enabled = true;
     }
-
-     public void Level1Button()
+    public void Level1Button()
     {
         buttonSound.Play();
-        loading.GetComponent<Canvas>().enabled = false; 
-        SceneManager.LoadScene("SampleScene");
+        loading.GetComponent<Canvas>().enabled = false;
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void Level2Button()
+    {
+        buttonSound.Play();
+        loading.GetComponent<Canvas>().enabled = false;
+        SceneManager.LoadScene("Level2");
+    }
+
+    public void Level3Button()
+    {
+        buttonSound.Play();
+        loading.GetComponent<Canvas>().enabled = false;
+        SceneManager.LoadScene("Level3");
     }
 
     void Update()
     {
-        
+
     }
 }

@@ -12,7 +12,6 @@ public class RoamingEnemy : MonoBehaviour
     private NavMeshAgent agent;
     private Vector3 roamPosition;
     private bool isMoving = true;
-    private Transform enemyTransform;
     private float originalTempo;
     private bool isTempoChanged = false;
 
@@ -45,13 +44,6 @@ public class RoamingEnemy : MonoBehaviour
             return;
         }
 
-        enemyTransform = transform.GetChild(0);
-        if (enemyTransform == null)
-        {
-            Debug.LogError("Enemy child object not found!");
-            enemyTransform = transform;
-        }
-
         SetNewRoamPosition();
     }
 
@@ -80,26 +72,26 @@ public class RoamingEnemy : MonoBehaviour
 
     private void Move()
     {
-        if (!isMoving || enemyTransform == null) return;
+        if (!isMoving || transform == null) return;
 
-        Vector3 directionToPlayer = (player.position - enemyTransform.position).normalized;
-        Vector3 newPosition = enemyTransform.position + directionToPlayer * moveDistance;
+        Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        Vector3 newPosition = transform.position + directionToPlayer * moveDistance;
 
         NavMeshHit hit;
         if (NavMesh.SamplePosition(newPosition, out hit, moveDistance, NavMesh.AllAreas))
         {
-            enemyTransform.position = hit.position;
+            transform.position = hit.position;
         }
 
         // Rotate the enemy to face the movement direction
         if (directionToPlayer != Vector3.zero)
         {
             float angle = Mathf.Atan2(directionToPlayer.y, directionToPlayer.x) * Mathf.Rad2Deg;
-            enemyTransform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
+            transform.rotation = Quaternion.AngleAxis(angle + 90f, Vector3.forward);
         }
 
         // Check if we've reached the current roam position
-        if (Vector3.Distance(enemyTransform.position, roamPosition) < 0.01f)
+        if (Vector3.Distance(transform.position, roamPosition) < 0.01f)
         {
             SetNewRoamPosition();
         }
@@ -107,7 +99,7 @@ public class RoamingEnemy : MonoBehaviour
 
     private void CheckTempoChange()
     {
-        float distanceToPlayer = Vector3.Distance(enemyTransform.position, player.position);
+        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if (distanceToPlayer <= tempoChangeRadius && !isTempoChanged)
         {
