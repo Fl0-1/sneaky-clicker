@@ -7191,6 +7191,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1600248155724497331, guid: c425eeedbecbf5b49b9d8b6d947d1aa0, type: 3}
+      propertyPath: moveDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7125956751537196463, guid: c425eeedbecbf5b49b9d8b6d947d1aa0, type: 3}
       propertyPath: m_Name
       value: Checkpoint Enemy
