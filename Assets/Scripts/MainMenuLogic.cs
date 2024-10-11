@@ -66,8 +66,24 @@ public class MainMenuLogic : MonoBehaviour
     {
         buttonSound.Play();
         loading.GetComponent<Canvas>().enabled = false; 
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level1");
     }
+
+      public void Level2Button()
+    {
+        buttonSound.Play();
+        loading.GetComponent<Canvas>().enabled = false; 
+        SceneManager.LoadScene("Level2");
+    }
+
+      public void Level3Button()
+    {
+        buttonSound.Play();
+        loading.GetComponent<Canvas>().enabled = false; 
+        SceneManager.LoadScene("Level3");
+    }
+
+
 
     void Update()
     {
